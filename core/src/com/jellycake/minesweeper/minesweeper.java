@@ -22,6 +22,7 @@ public class minesweeper extends ApplicationAdapter {
 		controller = new Controller(board);
 		Gdx.input.setInputProcessor(controller);
 		view = new View(board);
+		Globals.cellSize = 8*(Gdx.graphics.getWidth()/Globals.BoardWidth/8);
 	}
 
 	@Override
@@ -45,7 +46,7 @@ public class minesweeper extends ApplicationAdapter {
 	@Override
 	public void resize(int width, int height)
 	{
-		Gdx.graphics.setDisplayMode(Globals.BoardWidth*Globals.cellSize+Globals.BorderWidth*2, Globals.BoardHeight*Globals.cellSize+Globals.BorderHeight*2, false);
+		//Gdx.graphics.setDisplayMode(Globals.BoardWidth*Globals.cellSize+Globals.BorderWidth*2, Globals.BoardHeight*Globals.cellSize+Globals.BorderHeight*2, false);
 	}
 	
 	@Override

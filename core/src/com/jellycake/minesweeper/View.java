@@ -30,7 +30,7 @@ public class View {
 	{
 		Texture texture = new Texture(Gdx.files.internal("mario.png"));
 		Texture texture1 = new Texture(Gdx.files.internal("borders.png"));
-		textures = new TextureRegion[26];
+		textures = new TextureRegion[31];
 		
 		//Cell sprites
 		for (int i=0; i<9; i++)
@@ -39,20 +39,26 @@ public class View {
 		textures[10] = new TextureRegion(texture, 32, 16, 16, 16);
 		textures[11] = new TextureRegion(texture, 48, 16, 16, 16);
 		//Borders
-		textures[12] = new TextureRegion(texture1, 0, 0, 12, 12); //left-top
+		textures[12] = new TextureRegion(texture1, 00, 00, 12, 12); //left-top
 		textures[13] = new TextureRegion(texture1, 13, 13, 12, 12); //right-bottom
-		textures[14] = new TextureRegion(texture1, 0, 13, 12, 12); //Left-bottom
-		textures[15] = new TextureRegion(texture1, 13, 0, 12, 12); //right-top
-		textures[16] = new TextureRegion(texture1, 12, 0, 01, 12); //top
+		textures[14] = new TextureRegion(texture1, 00, 13, 12, 12); //Left-bottom
+		textures[15] = new TextureRegion(texture1, 13, 00, 12, 12); //right-top
+		textures[16] = new TextureRegion(texture1, 12, 00, 01, 12); //top
 		textures[17] = new TextureRegion(texture1, 12, 13, 01, 12); //bottom
-		textures[18] = new TextureRegion(texture1, 0, 12, 12, 01); //left
+		textures[18] = new TextureRegion(texture1, 00, 12, 12, 01); //left
 		textures[19] = new TextureRegion(texture1, 13, 12, 12, 01); //right
+		//Graphics
 		textures[20] = new TextureRegion(texture, 0, 55, 26, 26); //head1
 		textures[21] = new TextureRegion(texture, 27, 55, 26, 26); //head2
-		textures[22] = new TextureRegion(texture, 70, 82, 26, 26); //minus
-		textures[23] = new TextureRegion(texture, 97, 82, 26, 26); //plus
-		textures[24] = new TextureRegion(texture, 70, 109, 26, 26); //flag_disables
-		textures[25] = new TextureRegion(texture, 97, 109, 26, 26); //flag_enabled
+		textures[22] = new TextureRegion(texture, 32, 82, 26, 26); //minus
+		textures[23] = new TextureRegion(texture, 59, 82, 26, 26); //plus
+		textures[24] = new TextureRegion(texture, 32, 109, 26, 26); //flag_disables
+		textures[25] = new TextureRegion(texture, 59, 109, 26, 26); //flag_enabled
+		textures[26] = new TextureRegion(texture, 27, 82, 01, 30); //left-empty-border
+		textures[27] = new TextureRegion(texture, 28, 82, 01, 30); //right-empty-border
+		textures[28] = new TextureRegion(texture, 29, 82, 01, 30); //center-empty-border
+		textures[29] = new TextureRegion(texture, 87, 82, 56, 26); //right-empty-border
+		textures[30] = new TextureRegion(texture, 109, 82, 56, 26); //center-empty-border
 	}
 	
 	public void draw()
@@ -78,18 +84,14 @@ public class View {
         {
             batch.draw(textures[18], Globals.BoardCenterX+(Globals.cellSize*Globals.BoardWidth/2), Globals.BoardCenterY-(Globals.cellSize*Globals.BoardHeight/2)+i, 12*Globals.cellSize/16, 1*Globals.cellSize/16); //right
             batch.draw(textures[19], Globals.BoardCenterX-(Globals.cellSize*Globals.BoardWidth/2)-12*Globals.cellSize/16, Globals.BoardCenterY-(Globals.cellSize*Globals.BoardHeight/2)+i, 12*Globals.cellSize/16, 1*Globals.cellSize/16); //left
-        }		
-		// GameOver and Win
-		if (Globals.GameOver == true)
-		{
-			font.draw(batch, "Game Over", Gdx.graphics.getWidth()/2-30, Gdx.graphics.getHeight()-20);
-			font.draw(batch, "Restart", Gdx.graphics.getWidth()/2-20, 20);
-		}
-		if (Globals.Win == true)
-		{
-			font.draw(batch, "Win", Gdx.graphics.getWidth()/2-10, Gdx.graphics.getWidth()-10);
-			font.draw(batch, "Restart", Gdx.graphics.getWidth()/2-20, 20);
-		}
+        }
+        //Bottom border
+        for (int i=1; i<Gdx.graphics.getWidth()-1; i++)
+        {
+            batch.draw(textures[28], i, 0, 1, 52); //minus
+        }
+        batch.draw(textures[26], 0, 0, 1, 52); //minus
+        batch.draw(textures[27], Gdx.graphics.getWidth(), 0, 1, 52); //minus
 		//font.draw(batch, Gdx.graphics.getHeight() + "-" + Gdx.graphics.getWidth(), 5, 15);
         batch.draw(textures[23], Gdx.graphics.getWidth()/2-78, 0, 52, 52); //plus
         if (Globals.isFlagClick == true)
@@ -97,7 +99,11 @@ public class View {
         else
             batch.draw(textures[24], Gdx.graphics.getWidth()/2-26, 0, 52, 52); //flag
         batch.draw(textures[22], Gdx.graphics.getWidth()/2+26, 0, 52, 52); //minus
-        
+		// GameOver and Win
+		if (Globals.GameOver == true)
+	        batch.draw(textures[29], Gdx.graphics.getWidth()/2-28*3, Gdx.graphics.getHeight()-26*3, 56*3, 26*3); //minus
+		if (Globals.Win == true)
+	        batch.draw(textures[30], Gdx.graphics.getWidth()/2-28*3, Gdx.graphics.getHeight()-26*3, 56*3, 26*3); //minus
         batch.end();
     }
 }

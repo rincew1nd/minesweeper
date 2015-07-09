@@ -47,7 +47,9 @@ public class Controller implements InputProcessor{
 	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
 		mousePosition.set(screenX, screenY * -1 + Gdx.graphics.getHeight());
 		
-		if ( !(startMousePosition.x > mousePosition.x || startMousePosition.x < mousePosition.x) && !(startMousePosition.y > mousePosition.y || startMousePosition.y < mousePosition.y))
+		if ( !(startMousePosition.x > mousePosition.x || startMousePosition.x < mousePosition.x) &&
+			 !(startMousePosition.y > mousePosition.y || startMousePosition.y < mousePosition.y) &&
+			 mousePosition.y > 52 )
 			if (Globals.GameOver == false && Globals.Win == false)
 			{
 				if( mousePosition.x > Globals.BoardCenterX-(Globals.cellSize*Globals.BoardWidth/2) && mousePosition.x < Globals.BoardCenterX+(Globals.cellSize*Globals.BoardWidth/2) && 
