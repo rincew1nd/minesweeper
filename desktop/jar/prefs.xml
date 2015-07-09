@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<minesweeper>
+	<BoardHeight>15</BoardHeight>
+	<BoardWidth>15</BoardWidth>
+	<BoardMines>15</BoardMines>
+	<CellSize>32</CellSize>
+	<ScreenX>450</ScreenX>
+	<ScreenY>600</ScreenY>
+</minesweeper>
