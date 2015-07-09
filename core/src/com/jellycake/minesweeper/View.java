@@ -30,7 +30,7 @@ public class View {
 	{
 		Texture texture = new Texture(Gdx.files.internal("mario.png"));
 		Texture texture1 = new Texture(Gdx.files.internal("borders.png"));
-		textures = new TextureRegion[22];
+		textures = new TextureRegion[26];
 		
 		//Cell sprites
 		for (int i=0; i<9; i++)
@@ -49,6 +49,10 @@ public class View {
 		textures[19] = new TextureRegion(texture1, 13, 12, 12, 01); //right
 		textures[20] = new TextureRegion(texture, 0, 55, 26, 26); //head1
 		textures[21] = new TextureRegion(texture, 27, 55, 26, 26); //head2
+		textures[22] = new TextureRegion(texture, 70, 82, 26, 26); //minus
+		textures[23] = new TextureRegion(texture, 97, 82, 26, 26); //plus
+		textures[24] = new TextureRegion(texture, 70, 109, 26, 26); //flag_disables
+		textures[25] = new TextureRegion(texture, 97, 109, 26, 26); //flag_enabled
 	}
 	
 	public void draw()
@@ -87,12 +91,12 @@ public class View {
 			font.draw(batch, "Restart", Gdx.graphics.getWidth()/2-20, 20);
 		}
 		//font.draw(batch, Gdx.graphics.getHeight() + "-" + Gdx.graphics.getWidth(), 5, 15);
-        batch.draw(textures[20], Gdx.graphics.getWidth()/2-78, 0, 52, 52); //right
+        batch.draw(textures[23], Gdx.graphics.getWidth()/2-78, 0, 52, 52); //plus
         if (Globals.isFlagClick == true)
-            batch.draw(textures[9], Gdx.graphics.getWidth()/2-26, 0, 52, 52); //flag
+            batch.draw(textures[25], Gdx.graphics.getWidth()/2-26, 0, 52, 52); //flag
         else
-            batch.draw(textures[11], Gdx.graphics.getWidth()/2-26, 0, 52, 52); //flag
-        batch.draw(textures[21], Gdx.graphics.getWidth()/2+26, 0, 52, 52); //right
+            batch.draw(textures[24], Gdx.graphics.getWidth()/2-26, 0, 52, 52); //flag
+        batch.draw(textures[22], Gdx.graphics.getWidth()/2+26, 0, 52, 52); //minus
         
         batch.end();
     }

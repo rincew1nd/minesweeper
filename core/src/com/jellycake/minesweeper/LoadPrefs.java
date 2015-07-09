@@ -33,7 +33,9 @@ public class LoadPrefs {
 	    Document document = null;
 		try {
 			document = builder.parse(xml);
-		} catch (SAXException | IOException e) {
+		} catch (SAXException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		

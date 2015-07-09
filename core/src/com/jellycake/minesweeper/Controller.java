@@ -71,7 +71,9 @@ public class Controller implements InputProcessor{
 							Globals.Win = true;
 						}
 					}
-					if (Globals.isFlagClick == true)
+					if (Globals.isFlagClick == true && (
+							board.GetCell(((int)mousePosition.x - Globals.BoardCenterX + (Globals.cellSize*Globals.BoardWidth/2))/Globals.cellSize, ((int)mousePosition.y - Globals.BoardCenterY + (Globals.cellSize*Globals.BoardHeight/2))/Globals.cellSize).GetState() == 9 ||
+							board.GetCell(((int)mousePosition.x - Globals.BoardCenterX + (Globals.cellSize*Globals.BoardWidth/2))/Globals.cellSize, ((int)mousePosition.y - Globals.BoardCenterY + (Globals.cellSize*Globals.BoardHeight/2))/Globals.cellSize).GetState() == 11))
 						board.GetCell(((int)mousePosition.x - Globals.BoardCenterX + (Globals.cellSize*Globals.BoardWidth/2))/Globals.cellSize, ((int)mousePosition.y - Globals.BoardCenterY + (Globals.cellSize*Globals.BoardHeight/2))/Globals.cellSize).FlagCell();
 				}
 			} else if (Globals.GameOver == true)
