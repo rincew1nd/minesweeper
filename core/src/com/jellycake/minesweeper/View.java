@@ -86,19 +86,17 @@ public class View {
             batch.draw(textures[19], Globals.BoardCenterX-(Globals.cellSize*Globals.BoardWidth/2)-12*Globals.cellSize/16, Globals.BoardCenterY-(Globals.cellSize*Globals.BoardHeight/2)+i, 12*Globals.cellSize/16, 1*Globals.cellSize/16); //left
         }
         //Bottom border
-        for (int i=1; i<Gdx.graphics.getWidth()-1; i++)
-        {
-            batch.draw(textures[28], i, 0, 1, 52); //minus
-        }
-        batch.draw(textures[26], 0, 0, 1, 52); //minus
-        batch.draw(textures[27], Gdx.graphics.getWidth(), 0, 1, 52); //minus
-		//font.draw(batch, Gdx.graphics.getHeight() + "-" + Gdx.graphics.getWidth(), 5, 15);
-        batch.draw(textures[23], Gdx.graphics.getWidth()/2-78, 0, 52, 52); //plus
+        //for (int i=1; i<Gdx.graphics.getWidth()-1; i++)
+        //    batch.draw(textures[28], i, 0, 1, 52); //border-center
+        //batch.draw(textures[26], 0, 0, 1, 52); //border-left
+        //batch.draw(textures[27], Gdx.graphics.getWidth(), 0, 1, 52); //border-right
+        // Buttons
+        batch.draw(textures[23], Gdx.graphics.getWidth()/2-114, 0, 76, 76); //plus
         if (Globals.isFlagClick == true)
-            batch.draw(textures[25], Gdx.graphics.getWidth()/2-26, 0, 52, 52); //flag
+            batch.draw(textures[25], Gdx.graphics.getWidth()/2-38, 0, 76, 76); //flag
         else
-            batch.draw(textures[24], Gdx.graphics.getWidth()/2-26, 0, 52, 52); //flag
-        batch.draw(textures[22], Gdx.graphics.getWidth()/2+26, 0, 52, 52); //minus
+            batch.draw(textures[24], Gdx.graphics.getWidth()/2-38, 0, 76, 76); //flag
+        batch.draw(textures[22], Gdx.graphics.getWidth()/2+38, 0, 76, 76); //minus
 		// GameOver and Win
 		if (Globals.GameOver == true)
 	        batch.draw(textures[29], Gdx.graphics.getWidth()/2-28*3, Gdx.graphics.getHeight()-26*3, 56*3, 26*3); //minus
