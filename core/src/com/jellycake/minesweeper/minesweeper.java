@@ -3,6 +3,7 @@ package com.jellycake.minesweeper;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.jellycake.minesweeper.game.MineGame;
 import com.jellycake.minesweeper.mainmenu.MainMenu;
 
 public class minesweeper extends Game {
@@ -14,7 +15,8 @@ public class minesweeper extends Game {
 		Gdx.app.log("Minesweeper", " created!");
 		batch = new SpriteBatch();
 		AssetLoader.LoadMenuAsset();
-		setScreen(new MainMenu(batch));
+		setScreen(new MainMenu(batch, this));
+		//setScreen(new MineGame(batch));
 	}
 	
 	@Override

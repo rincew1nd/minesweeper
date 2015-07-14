@@ -1,7 +1,8 @@
 package com.jellycake.minesweeper.objects;
 
-import com.jellycake.minesweeper.objects.Globals;
 import java.util.Random;
+
+import com.jellycake.minesweeper.game.GameVariables;
 
 public class Field {
     
@@ -20,32 +21,32 @@ public class Field {
     */
     public boolean CreateField()
     {
-        if (Globals.BoardHeight * Globals.BoardWidth < Globals.BoardMines) return false;
+        if (GameVariables.BoardHeight * GameVariables.BoardWidth < GameVariables.BoardMines) return false;
         
         rand = new Random();
         
         // Создаём массив размером height*width
-        field = new int[Globals.BoardHeight * Globals.BoardWidth];
+        field = new int[GameVariables.BoardHeight * GameVariables.BoardWidth];
         
         // Очищаем массив
-        for (int i=0; i<Globals.BoardHeight; i++)
-            for (int j=0; j<Globals.BoardWidth; j++)
-                field[i + j * Globals.BoardHeight] = 0;
+        for (int i=0; i<GameVariables.BoardHeight; i++)
+            for (int j=0; j<GameVariables.BoardWidth; j++)
+                field[i + j * GameVariables.BoardHeight] = 0;
         
         // Генерируем мины
-        for (int i=0; i<Globals.BoardMines; i++)
+        for (int i=0; i<GameVariables.BoardMines; i++)
         {
-            int x = rand.nextInt(Globals.BoardWidth - 0);
-            int y = rand.nextInt(Globals.BoardHeight - 0);
+            int x = rand.nextInt(GameVariables.BoardWidth - 0);
+            int y = rand.nextInt(GameVariables.BoardHeight - 0);
             
             while (true)
             {
-                if (field[x + y * Globals.BoardHeight] == 9)
+                if (field[x + y * GameVariables.BoardHeight] == 9)
                 {
-                    x = rand.nextInt(Globals.BoardWidth - 0);
-                    y = rand.nextInt(Globals.BoardHeight - 0);
+                    x = rand.nextInt(GameVariables.BoardWidth - 0);
+                    y = rand.nextInt(GameVariables.BoardHeight - 0);
                 } else {
-                    field[x + y * Globals.BoardHeight] = 9;
+                    field[x + y * GameVariables.BoardHeight] = 9;
                     break;
                 }
             }
@@ -66,8 +67,8 @@ public class Field {
     {
         for (int i = x-1; i <= x+1; i++)
             for (int j = y-1; j <= y+1; j++)
-                if (!(i==x && j==y) && Globals.IsOnBoard(i, j) && field[i + j * Globals.BoardHeight] != 9)
-                    field[i + j * Globals.BoardHeight]++;
+                if (!(i==x && j==y) && GameVariables.IsOnBoard(i, j) && field[i + j * GameVariables.BoardHeight] != 9)
+                    field[i + j * GameVariables.BoardHeight]++;
     }
     
     /**

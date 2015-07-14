@@ -1,3 +1,4 @@
+/*
 package com.jellycake.minesweeper;
 
 import java.io.File;
@@ -11,7 +12,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.xml.sax.SAXException;
 
-import com.jellycake.minesweeper.objects.Globals;
+import com.jellycake.minesweeper.game.GameVariables;
 
 public class LoadPrefs {	
 	
@@ -42,18 +43,19 @@ public class LoadPrefs {
 	    Element root = document.getDocumentElement();
 	    
 	    Element BoardHeight = (Element) root.getElementsByTagName("BoardHeight").item(0);
-	    Globals.BoardHeight = Integer.parseInt(BoardHeight.getTextContent());
+	    GameVariables.BoardHeight = Integer.parseInt(BoardHeight.getTextContent());
 	    Element BoardWidth = (Element) root.getElementsByTagName("BoardWidth").item(0);
-	    Globals.BoardWidth = Integer.parseInt(BoardWidth.getTextContent());
+	    GameVariables.BoardWidth = Integer.parseInt(BoardWidth.getTextContent());
 	    Element BoardMines = (Element) root.getElementsByTagName("BoardMines").item(0);
-	    Globals.BoardMines = Integer.parseInt(BoardMines.getTextContent());
+	    GameVariables.BoardMines = Integer.parseInt(BoardMines.getTextContent());
 	    Element cellSize = (Element) root.getElementsByTagName("CellSize").item(0);
-	    Globals.cellSize = Integer.parseInt(cellSize.getTextContent());
+	    GameVariables.cellSize = Integer.parseInt(cellSize.getTextContent());
 	    Element ScreenX = (Element) root.getElementsByTagName("ScreenX").item(0);
-	    Globals.ScreenX = Integer.parseInt(ScreenX.getTextContent());
+	    GameVariables.ScreenX = Integer.parseInt(ScreenX.getTextContent());
 	    Element ScreenY = (Element) root.getElementsByTagName("ScreenY").item(0);
-	    Globals.ScreenY = Integer.parseInt(ScreenY.getTextContent());
+	    GameVariables.ScreenY = Integer.parseInt(ScreenY.getTextContent());
 	    
-	    Globals.SetBoards();
+	    GameVariables.SetBoards();
 	}
 }
+*/

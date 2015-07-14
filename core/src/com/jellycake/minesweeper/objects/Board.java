@@ -1,36 +1,36 @@
 package com.jellycake.minesweeper.objects;
 
-import com.jellycake.minesweeper.objects.Globals;
+import com.jellycake.minesweeper.game.GameVariables;
 
 public class Board {
-    Cell cells[];
-    int[] field;
+    private Cell cells[];
     
     /**
     * Create Board
     */
     public Board() {		
-        cells = new Cell[Globals.BoardWidth * Globals.BoardHeight];
+        cells = new Cell[GameVariables.BoardWidth * GameVariables.BoardHeight];
         GenerateBoard();
     }
     
     private void GenerateBoard()
     {
+        int[] field;
         Field _field = new Field();
         _field.CreateField();
         field = _field.getField();
         _field = null;
         
-        for (int i = 0; i < Globals.BoardWidth; i++)
-            for (int j = 0; j < Globals.BoardHeight; j++)
-                cells[i + j * Globals.BoardHeight] = new Cell(field[i + j * Globals.BoardHeight], i, j);
+        for (int i = 0; i < GameVariables.BoardWidth; i++)
+            for (int j = 0; j < GameVariables.BoardHeight; j++)
+                cells[i + j * GameVariables.BoardHeight] = new Cell(field[i + j * GameVariables.BoardHeight], i, j);
         
-        for (int i = 0; i < Globals.BoardWidth; i++)
-            for (int j = 0; j < Globals.BoardHeight; j++)
+        for (int i = 0; i < GameVariables.BoardWidth; i++)
+            for (int j = 0; j < GameVariables.BoardHeight; j++)
                 for (int di = i-1; di <= i+1; di++)
                     for (int dj = j-1; dj <= j+1; dj++)
-                        if (!(di==i && dj==j) && Globals.IsOnBoard(di, dj))
-                            cells[i + j * Globals.BoardHeight].AddNearCell(cells[di + dj * Globals.BoardHeight]);
+                        if (!(di==i && dj==j) && GameVariables.IsOnBoard(di, dj))
+                            cells[i + j * GameVariables.BoardHeight].AddNearCell(cells[di + dj * GameVariables.BoardHeight]);
     }
     
     /**
@@ -42,8 +42,8 @@ public class Board {
     */
     public Cell GetCell(int x, int y)
     {
-        if (Globals.IsOnBoard(x, y))
-            return cells[x+y*Globals.BoardHeight];
+        if (GameVariables.IsOnBoard(x, y))
+            return cells[x+y*GameVariables.BoardHeight];
         else
             return null;
     }
@@ -56,12 +56,10 @@ public class Board {
     public boolean IsAllOpened()
     {
         int closed = 0;
-        for (int i = 0; i<(Globals.BoardHeight * Globals.BoardHeight); i++)
-        {
-        	if (cells[i].GetState() == 9 || cells[i].GetState() == 11)
+        for (int i = 0; i<(GameVariables.BoardHeight * GameVariables.BoardHeight); i++)
+        	if (cells[i].GetState() == "ClosedCell" || cells[i].GetState() == "FlagCell")
         		closed++;
-        }
-        if (closed == Globals.BoardMines) return true; else return false;
+        if (closed == GameVariables.BoardMines) return true; else return false;
     }
     
     /**
@@ -70,7 +68,7 @@ public class Board {
     */
     public void ShowAll()
     {
-        for(int i = 0; i<(Globals.BoardHeight * Globals.BoardHeight); i++)
+        for(int i = 0; i<(GameVariables.BoardHeight * GameVariables.BoardHeight); i++)
         	cells[i].OpenCell();
     }
     
@@ -83,9 +81,9 @@ public class Board {
     */
     public void restart(int width, int height, int mines)
     {
-    	Globals.BoardHeight = height;
-    	Globals.BoardWidth = width;
-    	Globals.BoardMines = mines;
+    	GameVariables.BoardHeight = height;
+    	GameVariables.BoardWidth = width;
+    	GameVariables.BoardMines = mines;
     	GenerateBoard();
     }
 }

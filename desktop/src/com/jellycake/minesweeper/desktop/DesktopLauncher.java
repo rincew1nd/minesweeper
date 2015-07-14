@@ -8,8 +8,8 @@ public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		config.title = "Minesweeper";
-		config.width = 300;
-		config.height = 300;
+		config.width = 360;
+		config.height = 640;
 		
 		new LwjglApplication(new minesweeper(), config);
 	}

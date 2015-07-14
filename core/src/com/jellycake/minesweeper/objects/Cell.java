@@ -1,11 +1,13 @@
 package com.jellycake.minesweeper.objects;
 
 import com.badlogic.gdx.math.Vector3;
+import com.jellycake.minesweeper.game.GameVariables;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Cell {
-    private Globals.State state;
+    private GameVariables.State state;
     private final int mineCount;
     private final List<Cell> nearCells;
     public final Vector3 pos;
@@ -19,7 +21,7 @@ public class Cell {
      */
     public Cell(int mineCount, float x, float y){
         this.mineCount = mineCount;
-        state = Globals.State.CLOSED;
+        state = GameVariables.State.CLOSED;
         pos = new Vector3(x, y, 1f);
         nearCells = new ArrayList<Cell>();
     }
@@ -39,16 +41,16 @@ public class Cell {
      *
      * @return Current cell state
      */
-    public int GetState ()
+    public String GetState ()
     {
-        if (state == Globals.State.CLOSED)
-            return 9;
-        else if (state == Globals.State.BOMB)
-            return 10;
-        else if (state == Globals.State.FLAG)
-            return 11;
+        if (state == GameVariables.State.CLOSED)
+            return "ClosedCell";
+        else if (state == GameVariables.State.BOMB)
+            return "BombCell";
+        else if (state == GameVariables.State.FLAG)
+            return "FlagCell";
         else
-            return mineCount;
+            return mineCount+"Cell";
     }
     
     /**
@@ -56,19 +58,19 @@ public class Cell {
      *
      * @return Current cell state
      */
-    public Globals.State OpenCell()
+    public GameVariables.State OpenCell()
     {
         if (mineCount == 0)
         {
-            state = Globals.State.OPENED;
+            state = GameVariables.State.OPENED;
             for (Cell cell : nearCells)
-                if (cell.state == Globals.State.CLOSED)
+                if (cell.state == GameVariables.State.CLOSED)
                     cell.OpenCell();
         }
         else if (mineCount > 0 && mineCount < 9)
-            state = Globals.State.OPENED;
+            state = GameVariables.State.OPENED;
         else if (mineCount == 9)
-            state = Globals.State.BOMB;
+            state = GameVariables.State.BOMB;
         
         return state;
     }
@@ -78,9 +80,9 @@ public class Cell {
      */
     public void FlagCell()
     {
-    	if (state == Globals.State.FLAG)
-    		state = Globals.State.CLOSED;
+    	if (state == GameVariables.State.FLAG)
+    		state = GameVariables.State.CLOSED;
     	else
-        	state = Globals.State.FLAG;
+        	state = GameVariables.State.FLAG;
     }
 }
